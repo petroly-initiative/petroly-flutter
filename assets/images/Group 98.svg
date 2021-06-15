@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="727.517" height="376.897" viewBox="0 0 727.517 376.897">
+  <g id="Group_98" data-name="Group 98" transform="translate(85.759 229.482)">
+    <g id="layer1" transform="translate(-5.543 -236.752) rotate(17)">
+      <path id="path1087" d="M.006,3.825s100.712,152.86,272.185,273.826h0L285.646.434Z" transform="translate(92.398 6.111)" fill="#5f9" opacity="0.604"/>
+      <path id="path1085" d="M375.45.57,48.03,4.457.418,277.106S155.446,18.652,375.45.571Z" transform="translate(2.594 6.111)" fill="#5df" opacity="0.635"/>
+      <path id="path1099" d="M.284,186.318C178.473,187.455,371.127.558,371.127.558L362,186.862Z" transform="translate(2.594 96.911)" fill="#80b3ff" opacity="0.604"/>
+      <path id="path1101" d="M180.958.276S72.475,174.611,120.478,275.641c0,0-110.737-161.7-120.475-273.207Z" transform="translate(50.556 8.053)" fill="#0f6" opacity="0.411"/>
+    </g>
+    <g id="layer1-2" data-name="layer1" transform="matrix(0.999, 0.035, -0.035, 0.999, 267.016, -141.063)">
+      <path id="path1087-2" data-name="path1087" d="M0,3.8s100.313,151.78,271.315,271.753h0L285.166,0Z" transform="translate(89.804 0)" fill="#5f9" opacity="0.604"/>
+      <path id="path1085-2" data-name="path1085" d="M374.97,0,47.962,4.36,0,275.559S155.22,18.313,374.969,0Z" transform="translate(0 0.001)" fill="#5df" opacity="0.635"/>
+      <path id="path1099-2" data-name="path1099" d="M0,186.876C177.892,187.748,370.512,0,370.512,0l-9.393,186.876Z" transform="translate(0 88.683)" fill="#80b3ff" opacity="0.604"/>
+      <path id="path1101-2" data-name="path1101" d="M181.371,0S72.378,173.334,120.339,273.617c0,0-110.747-160.452-120.339-271.2Z" transform="translate(47.962 1.942)" fill="#0f6" opacity="0.411"/>
+    </g>
+  </g>
+</svg>
