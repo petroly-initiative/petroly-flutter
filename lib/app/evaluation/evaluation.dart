@@ -2,6 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class Evalation extends StatefulWidget {
   @override
@@ -12,7 +14,7 @@ class _EvalationState extends State<Evalation> {
   String dropdownvalue = 'Department';
   var items = [
     'Department',
-    'Banana',
+    'Course',
     'Grapes',
     'Orange',
     'watermelon',
@@ -27,6 +29,8 @@ class _EvalationState extends State<Evalation> {
         children: [
           TextField(
             decoration: InputDecoration(
+              fillColor: Colors.black12,
+              filled: true,
               labelText: 'Enter your instructor name ',
               hintText: 'Mohammad Ahmad',
               suffixIcon: Padding(
@@ -37,17 +41,15 @@ class _EvalationState extends State<Evalation> {
                 ),
               ),
               border: OutlineInputBorder(
-                  borderSide: const BorderSide(
-                    color: Colors.white,
-                    width: 0.0,
-                  ),
-                  borderRadius: BorderRadius.circular(25.0)),
+                borderSide: BorderSide.none,
+                borderRadius: BorderRadius.circular(50),
+              ),
             ),
           ),
           SizedBox(height: 26.0),
           Center(
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Container(
                   decoration: BoxDecoration(
@@ -128,7 +130,7 @@ class _EvalationState extends State<Evalation> {
             height: 20.0,
           ),
           Container(
-            padding: const EdgeInsets.all(20.0),
+            padding: const EdgeInsets.all(16.0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
               color: Colors.white,
@@ -141,9 +143,103 @@ class _EvalationState extends State<Evalation> {
                 ),
               ],
             ),
-            height: 120,
-            width: 350,
-            alignment: Alignment.center,
+            height: 180,
+            width: 360,
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    ClipOval(
+                      child: Image.asset(
+                        'assets/images/blank_profile.png',
+                        fit: BoxFit.cover,
+                        width: 50,
+                        height: 50,
+                        alignment: Alignment.centerLeft,
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.fromLTRB(20, 0, 4, 0),
+                      child: Text('Dr. Nawaf Alfiafi',
+                          style: TextStyle(
+                              color: Colors.blueGrey,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20)),
+                    ),
+                  ],
+                ),
+                Text(
+                  'ICS',textAlign: TextAlign.right,
+                  style: TextStyle(
+                      color: Colors.blueGrey,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    RatingBar.builder(
+                      initialRating: 3,
+                      minRating: 1,
+                      direction: Axis.horizontal,
+                      allowHalfRating: true,
+                      itemCount: 5,
+                      itemPadding: EdgeInsets.symmetric(horizontal: 0.0),
+                      itemBuilder: (context, _) => Icon(
+                        Icons.star,
+                        color: Colors.amber,
+                      ),
+                      onRatingUpdate: (rating) {
+                        print(rating);
+                      },
+                    ),
+                  ],
+                ),
+                SizedBox(height: 8,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Container(
+                      margin: EdgeInsets.fromLTRB(120, 0, 4, 0),
+                      child: Icon(
+                        Icons.mode_comment_rounded,
+                        color: Colors.black54,
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.fromLTRB(0, 0, 4, 0),
+                      child: Text(
+                        '53',
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black54),
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.fromLTRB(0, 0, 4, 0),
+                      child: Icon(
+                        FontAwesomeIcons.solidEdit,
+                        color: Colors.black54,
+                      ),
+                    ),
+                    Text(
+                      '70',
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black54),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ],
       ),

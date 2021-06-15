@@ -8,7 +8,7 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: Colors.green,
+          backgroundColor: Colors.blueGrey,
           centerTitle: true,
           title: Icon(FontAwesomeIcons.stumbleuponCircle),
           leading: Builder(
