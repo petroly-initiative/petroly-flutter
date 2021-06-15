@@ -3,6 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:petroly/custom_widgets/form_contianer.dart';
 import 'package:petroly/custom_widgets/paint.dart';
 import 'package:petroly/custom_widgets/submit_button.dart';
 import 'package:petroly/custom_widgets/text_field_input.dart';
@@ -20,6 +21,7 @@ class SignInPage extends StatelessWidget {
   Widget _buildContent(BuildContext context) {
     return Stack(
       children: <Widget>[
+        //background
         Container(
           alignment: Alignment.topRight,
           width: MediaQuery.of(context).size.width,
@@ -40,83 +42,64 @@ class SignInPage extends StatelessWidget {
                   image: AssetImage('assets/images/Group 97.png'),
                   fit: BoxFit.scaleDown)),
         ),
-        Padding(
-          padding: EdgeInsets.all(16.0),
-          child: Center(
-            child: Container(
-              padding: const EdgeInsets.all(20.0),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                color: Colors.white,
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    spreadRadius: 5,
-                    blurRadius: 7,
-                    offset: Offset(0, 3),
-                  ),
-                ],
+        //sign in form
+        CustomContianer(
+          height: 400,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              Text(
+                'Log in to Petroly',
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ),
-              height: 350,
-              width: 400,
-              alignment: Alignment.center,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: <Widget>[
-                  Text(
-                    'Log in to Petroly',
-                    textAlign: TextAlign.center,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                        fontWeight: FontWeight.bold, fontSize: 20),
-                  ),
-                  SizedBox(height: 16.0),
-                  CustomTextField(
-                    label: 'Username',
-                    hint: 'username',
-                    icon: FontAwesomeIcons.solidUser,
-                    inputType: TextInputType.text,
-                    inputAction: TextInputAction.next,
-                    obscureText: false,
-                  ),
-                  SizedBox(height: 16.0),
-                  CustomTextField(
-                    label: 'Password',
-                    hint: 'password',
-                    icon: FontAwesomeIcons.lock,
-                    inputType: TextInputType.text,
-                    inputAction: TextInputAction.done,
-                    obscureText: true,
-                  ),
-                  SizedBox(height: 8.0),
-                  RichText(
-                    textAlign: TextAlign.right,
-                    text: TextSpan(
-                        text: 'Forget Password',
-                        style: TextStyle(
-                          color: Colors.black54,
-                          fontSize: 15,
-                        ),
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () {
-                            Navigator.pushNamed(context, 'forgetPass');
-                          }),
-                  ),
-                  SizedBox(height: 16.0),
-                  CustomSubmitButton(
-                      label: 'Log in',
-                      onPressed: () {
-                        Navigator.pushNamed(context, 'home');
+              SizedBox(height: 16.0),
+              CustomTextField(
+                label: 'Username',
+                hint: 'username',
+                icon: FontAwesomeIcons.solidUser,
+                inputType: TextInputType.text,
+                inputAction: TextInputAction.next,
+                obscureText: false,
+              ),
+              SizedBox(height: 16.0),
+              CustomTextField(
+                label: 'Password',
+                hint: 'password',
+                icon: FontAwesomeIcons.lock,
+                inputType: TextInputType.text,
+                inputAction: TextInputAction.done,
+                obscureText: true,
+              ),
+              SizedBox(height: 8.0),
+              RichText(
+                textAlign: TextAlign.right,
+                text: TextSpan(
+                    text: 'Forget Password',
+                    style: TextStyle(
+                      color: Colors.black54,
+                      fontSize: 15,
+                    ),
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () {
+                        Navigator.pushNamed(context, 'forgetPass');
                       }),
-                  SizedBox(height: 8.0),
-                  ToggleSignUp(
-                      page: "SignUp",
-                      text: "Do not have an account?",
-                      link: " Sign Up")
-                ],
               ),
-            ),
+              SizedBox(height: 16.0),
+              CustomSubmitButton(
+                  label: 'Log in',
+                  onPressed: () {
+                    Navigator.pushNamed(context, 'home');
+                  }),
+              SizedBox(height: 8.0),
+              ToggleSignUp(
+                  page: "SignUp",
+                  text: "Do not have an account?",
+                  link: " Sign Up")
+            ],
           ),
         ),
       ],

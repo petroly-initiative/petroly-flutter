@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:petroly/app/sign_in/sign_in_page.dart';
+import 'package:petroly/custom_widgets/form_contianer.dart';
 import 'package:petroly/custom_widgets/paint.dart';
 
 import 'package:petroly/custom_widgets/submit_button.dart';
@@ -21,90 +22,71 @@ class SignUpPage extends StatelessWidget {
   Widget _buildContent(BuildContext context) {
     return Stack(
       children: <Widget>[
+        //background
         CustomPaint(
           size: Size(
               1080,
               (1080 * 0.555555555555556)
                   .toDouble()), //You can Replace [WIDTH] with your desired width for Custom Paint and height will be calculated automatically
           painter: RPSCustomPainter(),
-
-          child: Padding(
-            padding: EdgeInsets.all(16.0),
-            child: Center(
-              child: Container(
-                padding: const EdgeInsets.all(20.0),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
-                      spreadRadius: 5,
-                      blurRadius: 7,
-                      offset: Offset(0, 3),
-                    ),
-                  ],
+          //sign up form
+          child: CustomContianer(
+            height: 500,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                Text(
+                  'Create a Petroly Account',
+                  textAlign: TextAlign.center,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: 20),
                 ),
-                height: 500,
-                width: 400,
-                alignment: Alignment.center,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: <Widget>[
-                    Text(
-                      'Create a Petroly Account',
-                      textAlign: TextAlign.center,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 20),
-                    ),
-                    SizedBox(height: 16.0),
-                    CustomTextField(
-                      label: 'Email',
-                      hint: 'test@test.com',
-                      icon: FontAwesomeIcons.solidEnvelope,
-                      inputType: TextInputType.emailAddress,
-                      inputAction: TextInputAction.next,
-                      obscureText: false,
-                    ),
-                    SizedBox(height: 16.0),
-                    CustomTextField(
-                      label: 'Username',
-                      hint: 'username',
-                      icon: FontAwesomeIcons.solidUser,
-                      inputType: TextInputType.text,
-                      inputAction: TextInputAction.next,
-                      obscureText: false,
-                    ),
-                    SizedBox(height: 16.0),
-                    CustomTextField(
-                      label: 'Password',
-                      hint: 'password',
-                      icon: FontAwesomeIcons.lock,
-                      inputType: TextInputType.visiblePassword,
-                      inputAction: TextInputAction.next,
-                      obscureText: true,
-                    ),
-                    SizedBox(height: 18.0),
-                    CustomTextField(
-                      label: 'Confirm Password',
-                      hint: 'Confirm Password',
-                      icon: FontAwesomeIcons.lock,
-                      inputType: TextInputType.text,
-                      inputAction: TextInputAction.done,
-                      obscureText: false,
-                    ),
-                    SizedBox(height: 16.0),
-                    CustomSubmitButton(label: 'Sign up', onPressed: () {}),
-                    SizedBox(height: 8.0),
-                    ToggleSignUp(
-                        page: "/",
-                        text: "Already have an account?",
-                        link: " Sign in")
-                  ],
+                SizedBox(height: 16.0),
+                CustomTextField(
+                  label: 'Email',
+                  hint: 'test@test.com',
+                  icon: FontAwesomeIcons.solidEnvelope,
+                  inputType: TextInputType.emailAddress,
+                  inputAction: TextInputAction.next,
+                  obscureText: false,
                 ),
-              ),
+                SizedBox(height: 16.0),
+                CustomTextField(
+                  label: 'Username',
+                  hint: 'username',
+                  icon: FontAwesomeIcons.solidUser,
+                  inputType: TextInputType.text,
+                  inputAction: TextInputAction.next,
+                  obscureText: false,
+                ),
+                SizedBox(height: 16.0),
+                CustomTextField(
+                  label: 'Password',
+                  hint: 'password',
+                  icon: FontAwesomeIcons.lock,
+                  inputType: TextInputType.visiblePassword,
+                  inputAction: TextInputAction.next,
+                  obscureText: true,
+                ),
+                SizedBox(height: 18.0),
+                CustomTextField(
+                  label: 'Confirm Password',
+                  hint: 'Confirm Password',
+                  icon: FontAwesomeIcons.lock,
+                  inputType: TextInputType.text,
+                  inputAction: TextInputAction.done,
+                  obscureText: false,
+                ),
+                SizedBox(height: 16.0),
+                CustomSubmitButton(label: 'Sign up', onPressed: () {}),
+                SizedBox(height: 8.0),
+                ToggleSignUp(
+                    page: "/",
+                    text: "Already have an account?",
+                    link: " Sign in")
+              ],
             ),
           ),
         ),
