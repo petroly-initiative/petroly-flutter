@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:petroly/custom_widgets/form_contianer.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+import 'package:toggle_switch/toggle_switch.dart';
 
 class Instructor extends StatefulWidget {
   @override
@@ -66,7 +67,21 @@ Widget _buildContent(BuildContext context) {
             ),
             progressColor: Colors.blue,
           ),
-          CustomContianer(height: 275, child: Column()),
+          ToggleSwitch(
+            cornerRadius: 20.0,
+            radiusStyle: true,
+            initialLabelIndex: 0,
+            minWidth: 120,
+            totalSwitches: 2,
+            labels: ['Rating', 'Comments'],
+            onToggle: (index) {
+              if (index == 0) {
+                CustomContianer(height: 250, child: Column());
+              } else {
+                CustomContianer(height: 200, child: Column());
+              }
+            },
+          ),
         ],
       ),
     )
