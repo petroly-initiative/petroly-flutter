@@ -8,8 +8,20 @@ import 'package:petroly/custom_widgets/paint.dart';
 import 'package:petroly/custom_widgets/submit_button.dart';
 import 'package:petroly/custom_widgets/text_field_input.dart';
 import 'package:petroly/custom_widgets/toggle_signup_signin.dart';
+import 'package:petroly/providers/Instructor_Provider.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter/foundation.dart';
 
-class SignInPage extends StatelessWidget {
+import 'package:petroly/providers/test3.dart';
+
+class SignInPage extends StatefulWidget {
+  const SignInPage({Key? key}) : super(key: key);
+
+  @override
+  _SignInPageState createState() => _SignInPageState();
+}
+
+class _SignInPageState extends State<SignInPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -85,14 +97,17 @@ class SignInPage extends StatelessWidget {
                     ),
                     recognizer: TapGestureRecognizer()
                       ..onTap = () {
-                        Navigator.pushNamed(context, 'forgetPass');
+                        print(00011000);
+
+                        // Navigator.pushNamed(context, 'forgetPass');
                       }),
               ),
               SizedBox(height: 16.0),
               CustomSubmitButton(
                   label: 'Log in',
                   onPressed: () {
-                    Navigator.pushNamed(context, 'home');
+                    // Provider.of<Counter>(context, listen: false).instructors;
+                    Navigator.pushNamed(context, '/home');
                   }),
               SizedBox(height: 8.0),
               ToggleSignUp(

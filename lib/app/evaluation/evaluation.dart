@@ -1,16 +1,33 @@
+import 'dart:convert';
 import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:http/http.dart' as http;
+import 'package:petroly/app/evaluation/instructor_card.dart';
+import 'package:petroly/models/Instructor_model.dart';
+import 'package:petroly/providers/Instructor_Provider.dart';
+import 'package:petroly/providers/test3.dart';
+import 'package:provider/provider.dart';
 
 class Evalation extends StatefulWidget {
+  Evalation({Key? key}) : super(key: key);
   @override
   _EvalationState createState() => _EvalationState();
 }
 
 class _EvalationState extends State<Evalation> {
+  late List<InstructorModel> instructors;
+  var _isinit = true;
+  void didChangeDependencies() {
+    if (_isinit) {
+      Provider.of<Counter>(context, listen: false).fetchData();
+    }
+    super.didChangeDependencies();
+  }
+
   String dropdownvalue = 'Department';
   var items = [
     'Department',
@@ -23,6 +40,8 @@ class _EvalationState extends State<Evalation> {
 
   @override
   Widget build(BuildContext context) {
+    // instructors = context.read<InstructorProviderx>().instructors;
+    instructors = Provider.of<Counter>(context).instructors;
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(
@@ -129,124 +148,13 @@ class _EvalationState extends State<Evalation> {
           SizedBox(
             height: 20.0,
           ),
-          GestureDetector(
-            onTap: () => Navigator.pushNamed(context, 'instructor'),
-            child: Container(
-              padding: const EdgeInsets.all(16.0),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                color: Colors.white,
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    spreadRadius: 5,
-                    blurRadius: 7,
-                    offset: Offset(0, 3),
-                  ),
-                ],
-              ),
-              height: 180,
-              width: 360,
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      ClipOval(
-                        child: Image.asset(
-                          'assets/images/blank_profile.png',
-                          fit: BoxFit.cover,
-                          width: 50,
-                          height: 50,
-                          alignment: Alignment.centerLeft,
-                        ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.fromLTRB(20, 0, 4, 0),
-                        child: Text('Dr. Nawaf Alfiafi',
-                            style: TextStyle(
-                                color: Colors.blueGrey,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20)),
-                      ),
-                    ],
-                  ),
-                  Text(
-                    'ICS',
-                    textAlign: TextAlign.right,
-                    style: TextStyle(
-                        color: Colors.blueGrey,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      RatingBar.builder(
-                        initialRating: 3,
-                        minRating: 1,
-                        direction: Axis.horizontal,
-                        allowHalfRating: true,
-                        itemCount: 5,
-                        itemPadding: EdgeInsets.symmetric(horizontal: 0.0),
-                        itemBuilder: (context, _) => Icon(
-                          Icons.star,
-                          color: Colors.amber,
-                        ),
-                        onRatingUpdate: (rating) {
-                          print(rating);
-                        },
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 8,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Container(
-                        margin: EdgeInsets.fromLTRB(120, 0, 4, 0),
-                        child: Icon(
-                          Icons.mode_comment_rounded,
-                          color: Colors.black54,
-                        ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.fromLTRB(0, 0, 4, 0),
-                        child: Text(
-                          '53',
-                          style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black54),
-                        ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.fromLTRB(0, 0, 4, 0),
-                        child: Icon(
-                          FontAwesomeIcons.solidEdit,
-                          color: Colors.black54,
-                        ),
-                      ),
-                      Text(
-                        '70',
-                        style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black54),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
+          Expanded(
+            child: ListView.builder(
+                itemCount: instructors.length,
+                itemBuilder: (ctx, index) {
+                  return InstructorCard(instructors[index]);
+                }),
+          )
         ],
       ),
     );
