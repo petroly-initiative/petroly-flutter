@@ -6,7 +6,9 @@ import 'dart:convert';
 import 'dart:async';
 
 class InstructorProviderx with ChangeNotifier, DiagnosticableTreeMixin {
-  List<InstructorModel> _instructors = [InstructorModel(id: 1, name: "Ali")];
+  List<InstructorModel> _instructors = [
+    InstructorModel(id: 1, name: "Ali", department: '')
+  ];
   List<InstructorModel> get instructors => _instructors;
   int count = 1;
   Future<void> fetchData() async {

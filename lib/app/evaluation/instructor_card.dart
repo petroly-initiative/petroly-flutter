@@ -14,7 +14,8 @@ class InstructorCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, '/instructor');
+        Navigator.pushNamed(context, '/instructor',
+            arguments: InstructorArguments(instructor));
       },
       child: Container(
         padding: const EdgeInsets.all(16.0),
@@ -55,6 +56,7 @@ class InstructorCard extends StatelessWidget {
                 Container(
                   margin: EdgeInsets.fromLTRB(20, 0, 4, 0),
                   width: 200,
+                  height: 40,
                   child: FittedBox(
                     child: Text(
                       instructor.name,
@@ -68,7 +70,7 @@ class InstructorCard extends StatelessWidget {
               ],
             ),
             Text(
-              'ICS',
+              instructor.department,
               textAlign: TextAlign.right,
               style: TextStyle(
                   color: Colors.blueGrey,
@@ -113,7 +115,7 @@ class InstructorCard extends StatelessWidget {
                   child: Text(
                     '53',
                     style: TextStyle(
-                        fontSize: 20,
+                        fontSize: 17,
                         fontWeight: FontWeight.bold,
                         color: Colors.black54),
                   ),
@@ -128,7 +130,7 @@ class InstructorCard extends StatelessWidget {
                 Text(
                   '70',
                   style: TextStyle(
-                      fontSize: 20,
+                      fontSize: 17,
                       fontWeight: FontWeight.bold,
                       color: Colors.black54),
                 ),

@@ -35,7 +35,7 @@ class _EvalationState extends State<Evalation> {
     'Grapes',
     'Orange',
     'watermelon',
-    'Pineapple'
+    'Pineapple',
   ];
 
   @override
@@ -50,8 +50,11 @@ class _EvalationState extends State<Evalation> {
             decoration: InputDecoration(
               fillColor: Colors.black12,
               filled: true,
-              labelText: 'Enter your instructor name ',
-              hintText: 'Mohammad Ahmad',
+
+              // labelText: 'Enter your instructor name ',
+              hintText: 'Look for your Instructor ',
+              // hintStyle: TextStyle(fontFamily: 'Droid'),
+              // hintText: 'Ex.Mohammad Ahmad',
               suffixIcon: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Icon(

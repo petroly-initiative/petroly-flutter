@@ -33,6 +33,7 @@ class MyApp extends StatelessWidget {
       //  initialRoute: '/SignIn',
       theme: ThemeData(
         primarySwatch: Colors.green,
+        fontFamily: 'Droid',
       ),
       routes: {
         '/SignIn': (context) => SignInPage(),

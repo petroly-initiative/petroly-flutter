@@ -20,7 +20,7 @@ class InstructorList with ChangeNotifier, DiagnosticableTreeMixin {
 
   Future<void> fetchData() async {
     var urlString =
-        'https://www.petroly.co/endpoint/?query={instructors{data{id,name}}}';
+        'https://www.petroly.co/endpoint/?query={instructors{data{id,name,department}}}';
     var url = Uri.parse(urlString);
     try {
       var response = await http.post(url);
@@ -30,8 +30,10 @@ class InstructorList with ChangeNotifier, DiagnosticableTreeMixin {
       // print(data['data']['instructors']['data']);
       _instructors.clear();
       for (var inst in data['data']['instructors']['data']) {
-        _instructors.add(
-            InstructorModel(id: int.parse(inst['id']), name: inst['name']));
+        _instructors.add(InstructorModel(
+            id: int.parse(inst['id']),
+            name: inst['name'],
+            department: inst['department']));
       }
       // print(_instructors);
 
