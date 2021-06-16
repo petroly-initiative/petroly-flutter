@@ -9,7 +9,7 @@ import 'package:http/http.dart' as http;
 import 'package:petroly/app/evaluation/instructor_card.dart';
 import 'package:petroly/models/Instructor_model.dart';
 import 'package:petroly/providers/Instructor_Provider.dart';
-import 'package:petroly/providers/test3.dart';
+import 'package:petroly/providers/Instructors_list.dart';
 import 'package:provider/provider.dart';
 
 class Evalation extends StatefulWidget {
@@ -23,7 +23,7 @@ class _EvalationState extends State<Evalation> {
   var _isinit = true;
   void didChangeDependencies() {
     if (_isinit) {
-      Provider.of<Counter>(context, listen: false).fetchData();
+      Provider.of<InstructorList>(context, listen: false).fetchData();
     }
     super.didChangeDependencies();
   }
@@ -41,7 +41,7 @@ class _EvalationState extends State<Evalation> {
   @override
   Widget build(BuildContext context) {
     // instructors = context.read<InstructorProviderx>().instructors;
-    instructors = Provider.of<Counter>(context).instructors;
+    instructors = Provider.of<InstructorList>(context).instructors;
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:petroly/providers/instructor_Provider.dart';
-import 'package:petroly/test2.dart';
-import 'package:petroly/providers/test3.dart';
+import 'package:petroly/providers/Instructors_list.dart';
 import 'package:provider/provider.dart';
 import 'app/evaluation/evaluation.dart';
 import 'app/evaluation/instructor_page.dart';
@@ -18,7 +17,7 @@ void main() {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => InstructorProviderx()),
-        ChangeNotifierProvider(create: (_) => Counter()),
+        ChangeNotifierProvider(create: (_) => InstructorList()),
       ],
       child: const MyApp(),
     ),

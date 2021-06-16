@@ -5,7 +5,7 @@ import 'package:petroly/models/Instructor_model.dart';
 import 'dart:convert';
 import 'dart:async';
 
-class Counter with ChangeNotifier, DiagnosticableTreeMixin {
+class InstructorList with ChangeNotifier, DiagnosticableTreeMixin {
   List<InstructorModel> _instructors = [];
   List<InstructorModel> get instructors => _instructors.toList();
   int _count = 0;
