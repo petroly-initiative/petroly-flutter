@@ -154,13 +154,15 @@ class _EvalationState extends State<Evalation> {
           SizedBox(
             height: 20.0,
           ),
-          Expanded(
-            child: ListView.builder(
-                itemCount: instructors.length,
-                itemBuilder: (ctx, index) {
-                  return InstructorCard(instructors[index]);
-                }),
-          )
+          instructors.length != 0
+              ? Expanded(
+                  child: ListView.builder(
+                      itemCount: instructors.length,
+                      itemBuilder: (ctx, index) {
+                        return InstructorCard(instructors[index]);
+                      }),
+                )
+              : CircularProgressIndicator()
         ],
       ),
     );
