@@ -9,6 +9,7 @@ import 'package:petroly/custom_widgets/submit_button.dart';
 import 'package:petroly/custom_widgets/text_field_input.dart';
 import 'package:petroly/custom_widgets/toggle_signup_signin.dart';
 import 'package:petroly/providers/Instructor_Provider.dart';
+import 'package:petroly/providers/auth.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/foundation.dart';
 
@@ -106,8 +107,15 @@ class _SignInPageState extends State<SignInPage> {
               CustomSubmitButton(
                   label: 'Log in',
                   onPressed: () {
-                    // Provider.of<Counter>(context, listen: false).instructors;
-                    Navigator.pushReplacementNamed(context, '/home');
+                    Provider.of<Auth>(context, listen: false)
+                        .login('Asd123123', 'sclmail110@gmail.com')
+                        .then((value) {
+                      if (value) {
+                        Navigator.pushReplacementNamed(context, '/home');
+                      }
+                    });
+
+                    //
                   }),
               SizedBox(height: 8.0),
               ToggleSignUp(

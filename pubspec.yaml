@@ -26,7 +26,7 @@ dependencies:
   toggle_switch: ^1.1.0
   flutter_rating_bar: ^4.0.0
   percent_indicator: ^3.3.0-nullsafety.1
-  # graghql_flutter: any
+  graphql_flutter: ^5.0.0-nullsafety
   provider: ^5.0.0
   font_awesome_flutter: ^9.0.0-nullsafety
   flutter_svg:  ^0.22.0

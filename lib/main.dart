@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:petroly/providers/auth.dart';
 import 'package:petroly/providers/instructor_Provider.dart';
 import 'package:petroly/providers/Instructors_list.dart';
 import 'package:provider/provider.dart';
@@ -18,6 +20,7 @@ void main() {
       providers: [
         ChangeNotifierProvider(create: (_) => InstructorProviderx()),
         ChangeNotifierProvider(create: (_) => InstructorList()),
+        ChangeNotifierProvider(create: (_) => Auth()),
       ],
       child: const MyApp(),
     ),
@@ -29,6 +32,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // await initHiveForFlutter();
+
     return MaterialApp(
       //  initialRoute: '/SignIn',
       theme: ThemeData(

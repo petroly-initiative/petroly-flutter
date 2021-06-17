@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:petroly/providers/auth.dart';
+import 'package:provider/provider.dart';
 
 class NavBar extends StatelessWidget {
   @override
@@ -11,7 +13,7 @@ class NavBar extends StatelessWidget {
       children: [
         UserAccountsDrawerHeader(
           accountName: Text(
-            'nawaf  alfaifi',
+            Provider.of<Auth>(context, listen: false).user.username,
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
