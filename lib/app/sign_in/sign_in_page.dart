@@ -107,7 +107,7 @@ class _SignInPageState extends State<SignInPage> {
                   label: 'Log in',
                   onPressed: () {
                     // Provider.of<Counter>(context, listen: false).instructors;
-                    Navigator.pushNamed(context, '/home');
+                    Navigator.pushReplacementNamed(context, '/home');
                   }),
               SizedBox(height: 8.0),
               ToggleSignUp(

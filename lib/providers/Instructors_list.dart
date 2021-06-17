@@ -6,8 +6,19 @@ import 'dart:convert';
 import 'dart:async';
 
 class InstructorList with ChangeNotifier, DiagnosticableTreeMixin {
+  String searchValue = '';
   List<InstructorModel> _instructors = [];
-  List<InstructorModel> get instructors => _instructors.toList();
+  List<InstructorModel> get instructors {
+    if (searchValue == '') {
+      return _instructors.toList();
+    } else {
+      return _instructors
+          .where((element) =>
+              element.name.toLowerCase().contains(searchValue.toLowerCase()))
+          .toList();
+    }
+  }
+
   int _count = 0;
 
   int get count => _count;
@@ -16,6 +27,10 @@ class InstructorList with ChangeNotifier, DiagnosticableTreeMixin {
     print(_count);
     _count++;
     notifyListeners();
+  }
+
+  void search(String subName) {
+    searchValue = subName;
   }
 
   Future<void> fetchData() async {

@@ -47,6 +47,9 @@ class _EvalationState extends State<Evalation> {
       child: Column(
         children: [
           TextField(
+            onChanged: (value) {
+              Provider.of<InstructorList>(context, listen: false).search(value);
+            },
             decoration: InputDecoration(
               fillColor: Colors.black12,
               filled: true,
