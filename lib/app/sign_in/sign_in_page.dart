@@ -23,6 +23,8 @@ class SignInPage extends StatefulWidget {
 }
 
 class _SignInPageState extends State<SignInPage> {
+  var password = '';
+  var username = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,6 +73,9 @@ class _SignInPageState extends State<SignInPage> {
               ),
               SizedBox(height: 16.0),
               CustomTextField(
+                onChange: (value) {
+                  username = value;
+                },
                 label: 'Username',
                 hint: 'username',
                 icon: FontAwesomeIcons.solidUser,
@@ -80,6 +85,9 @@ class _SignInPageState extends State<SignInPage> {
               ),
               SizedBox(height: 16.0),
               CustomTextField(
+                onChange: (value) {
+                  password = value;
+                },
                 label: 'Password',
                 hint: 'password',
                 icon: FontAwesomeIcons.lock,
@@ -108,7 +116,7 @@ class _SignInPageState extends State<SignInPage> {
                   label: 'Log in',
                   onPressed: () {
                     Provider.of<Auth>(context, listen: false)
-                        .login('Asd123123', 'sclmail110@gmail.com')
+                        .login(password, username)
                         .then((value) {
                       if (value) {
                         Navigator.pushReplacementNamed(context, '/home');

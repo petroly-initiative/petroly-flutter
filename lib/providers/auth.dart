@@ -20,9 +20,9 @@ class Auth with ChangeNotifier, DiagnosticableTreeMixin {
     notifyListeners();
   }
 
-  Future<bool> login(String password, String email) async {
+  Future<bool> login(String password, String username) async {
     String log =
-        'mutation {tokenAuth(password:"$password",email:"$email"){success,errors,user{username,id,email}}}';
+        'mutation {tokenAuth(password:"$password",username:"$username"){success,errors,user{username,id,email,firstName,lastName}}}';
     final headers = {
       "Content-Type": "application/json; charset=utf-8",
     };
@@ -41,6 +41,9 @@ class Auth with ChangeNotifier, DiagnosticableTreeMixin {
       _user = UserModel(
           id: userdata['id'],
           username: userdata['username'],
+          firstName: userdata['firstName'],
+          lastName: userdata['lastName'],
+          // profilePic: userdata['profile']['profilePic'],
           email: userdata['email']);
       return (data['data']['tokenAuth']['success']) as bool;
     } catch (error) {

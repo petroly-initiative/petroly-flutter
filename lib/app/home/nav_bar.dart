@@ -1,26 +1,29 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:petroly/models/user_model.dart';
 import 'package:petroly/providers/auth.dart';
 import 'package:provider/provider.dart';
 
 class NavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    UserModel user = Provider.of<Auth>(context, listen: false).user;
+    var fullName = user.firstName + " " + user.lastName;
     return Drawer(
         child: ListView(
       padding: EdgeInsets.zero,
       children: [
         UserAccountsDrawerHeader(
           accountName: Text(
-            Provider.of<Auth>(context, listen: false).user.username,
+            fullName == " " ? user.username : fullName,
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
               color: Colors.yellowAccent,
             ),
           ),
-          accountEmail: Text('test@test.com'),
+          accountEmail: Text(user.email + user.profilePic),
           currentAccountPicture: CircleAvatar(
             child: ClipOval(
               child: Image.asset(
