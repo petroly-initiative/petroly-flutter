@@ -25,6 +25,7 @@ class SignInPage extends StatefulWidget {
 class _SignInPageState extends State<SignInPage> {
   var password = '';
   var username = '';
+  var isLoading = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -112,19 +113,27 @@ class _SignInPageState extends State<SignInPage> {
                       }),
               ),
               SizedBox(height: 16.0),
-              CustomSubmitButton(
-                  label: 'Log in',
-                  onPressed: () {
-                    Provider.of<Auth>(context, listen: false)
-                        .login(password, username)
-                        .then((value) {
-                      if (value) {
-                        Navigator.pushReplacementNamed(context, '/home');
-                      }
-                    });
+              isLoading
+                  ? LinearProgressIndicator()
+                  : CustomSubmitButton(
+                      label: 'Log in',
+                      onPressed: () {
+                        setState(() {
+                          isLoading = true;
+                        });
+                        Provider.of<Auth>(context, listen: false)
+                            .login(password, username)
+                            .then((value) {
+                          setState(() {
+                            isLoading = false;
+                          });
+                          if (value) {
+                            Navigator.pushReplacementNamed(context, '/home');
+                          }
+                        });
 
-                    //
-                  }),
+                        //
+                      }),
               SizedBox(height: 8.0),
               ToggleSignUp(
                   page: "SignUp",

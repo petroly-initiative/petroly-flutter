@@ -115,7 +115,7 @@ class InstructorCard extends StatelessWidget {
                   child: Text(
                     '53',
                     style: TextStyle(
-                        fontSize: 17,
+                        fontSize: 14,
                         fontWeight: FontWeight.bold,
                         color: Colors.black54),
                   ),
@@ -130,7 +130,7 @@ class InstructorCard extends StatelessWidget {
                 Text(
                   '70',
                   style: TextStyle(
-                      fontSize: 17,
+                      fontSize: 14,
                       fontWeight: FontWeight.bold,
                       color: Colors.black54),
                 ),
