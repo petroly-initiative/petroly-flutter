@@ -118,6 +118,7 @@ class _SignInPageState extends State<SignInPage> {
                   : CustomSubmitButton(
                       label: 'Log in',
                       onPressed: () {
+                        // Navigator.pushReplacementNamed(context, '/home');
                         setState(() {
                           isLoading = true;
                         });

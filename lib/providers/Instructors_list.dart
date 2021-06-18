@@ -35,6 +35,36 @@ class InstructorList with ChangeNotifier, DiagnosticableTreeMixin {
 
   Future<void> fetchData() async {
     var urlString =
+        'https://www.petroly.co/endpoint/?query={instructors{data{id,name,department,profilePic,evaluationSet{count}}}}';
+    var url = Uri.parse(urlString);
+    try {
+      var response = await http.post(url);
+      // print(response.body);
+      var data = json.decode(response.body);
+      // print(data);
+      // print(data['data']['instructors']['data']);
+      _instructors.clear();
+      for (var inst in data['data']['instructors']['data']) {
+        _instructors.add(InstructorModel(
+            id: int.parse(inst['id']),
+            name: inst['name'],
+            profilePic: inst['profilePic'],
+            evalCount: (inst['evaluationSet']['count']),
+            department: inst['department']));
+      }
+      // print(_instructors);
+
+      notifyListeners();
+      if (response.statusCode >= 400) {
+        throw Exception(data['message']);
+      }
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  Future<void> fetchDep() async {
+    var urlString =
         'https://www.petroly.co/endpoint/?query={instructors{data{id,name,department}}}';
     var url = Uri.parse(urlString);
     try {

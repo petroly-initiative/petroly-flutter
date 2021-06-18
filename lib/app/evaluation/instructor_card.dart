@@ -45,13 +45,30 @@ class InstructorCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 ClipOval(
-                  child: Image.asset(
-                    'assets/images/blank_profile.png',
-                    fit: BoxFit.cover,
-                    width: 50,
-                    height: 50,
-                    alignment: Alignment.centerLeft,
-                  ),
+                  child: instructor.profilePic == ''
+                      ? Image.asset(
+                          'assets/images/blank_profile.png',
+                          fit: BoxFit.cover,
+                          width: 50,
+                          height: 50,
+                          alignment: Alignment.centerLeft,
+                        )
+                      : Image.network(
+                          instructor.profilePic,
+                          fit: BoxFit.cover,
+                          width: 50,
+                          height: 50,
+                          alignment: Alignment.centerLeft,
+                          errorBuilder: (context, error, stackTrace) {
+                            return Image.asset(
+                              'assets/images/blank_profile.png',
+                              fit: BoxFit.cover,
+                              width: 50,
+                              height: 50,
+                              alignment: Alignment.centerLeft,
+                            );
+                          },
+                        ),
                 ),
                 Container(
                   margin: EdgeInsets.fromLTRB(20, 0, 4, 0),
@@ -113,7 +130,7 @@ class InstructorCard extends StatelessWidget {
                 Container(
                   margin: EdgeInsets.fromLTRB(0, 0, 4, 0),
                   child: Text(
-                    '53',
+                    instructor.evalCount.toString(),
                     style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
@@ -128,7 +145,7 @@ class InstructorCard extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  '70',
+                  instructor.evalCount.toString(),
                   style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.bold,

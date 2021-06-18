@@ -34,13 +34,30 @@ class _InstructorState extends State<Instructor> {
             // crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               ClipOval(
-                child: Image.asset(
-                  'assets/images/blank_profile.png',
-                  fit: BoxFit.cover,
-                  width: 80,
-                  height: 80,
-                  alignment: Alignment.centerLeft,
-                ),
+                child: widget.arg.instructor.profilePic == ''
+                    ? Image.asset(
+                        'assets/images/blank_profile.png',
+                        fit: BoxFit.cover,
+                        width: 80,
+                        height: 80,
+                        alignment: Alignment.centerLeft,
+                      )
+                    : Image.network(
+                        widget.arg.instructor.profilePic,
+                        fit: BoxFit.cover,
+                        width: 80,
+                        height: 80,
+                        alignment: Alignment.centerLeft,
+                        errorBuilder: (context, error, stackTrace) {
+                          return Image.asset(
+                            'assets/images/blank_profile.png',
+                            fit: BoxFit.cover,
+                            width: 80,
+                            height: 80,
+                            alignment: Alignment.centerLeft,
+                          );
+                        },
+                      ),
               ),
               Text(widget.arg.instructor.name,
                   style: TextStyle(
@@ -58,17 +75,52 @@ class _InstructorState extends State<Instructor> {
               SizedBox(
                 height: 16,
               ),
-              CircularPercentIndicator(
-                radius: 80.0,
-                lineWidth: 8.0,
-                percent: .60,
-                animation: true,
-                animationDuration: 1200,
-                center: new Text(
-                  "3/5",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-                progressColor: Colors.blue,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  CircularPercentIndicator(
+                    radius: 80.0,
+                    lineWidth: 8.0,
+                    percent: .60,
+                    animation: true,
+                    animationDuration: 1200,
+                    footer: Text('Grading'),
+                    center: new Text(
+                      "3/5",
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                    progressColor: Colors.blue,
+                  ),
+                  CircularPercentIndicator(
+                    radius: 80.0,
+                    lineWidth: 8.0,
+                    percent: .60,
+                    animation: true,
+                    animationDuration: 1200,
+                    footer: Text('Teaching'),
+                    center: new Text(
+                      "3/5",
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                    progressColor: Colors.blue,
+                  ),
+                  CircularPercentIndicator(
+                    radius: 80.0,
+                    lineWidth: 8.0,
+                    percent: .60,
+                    animation: true,
+                    animationDuration: 1200,
+                    footer: Text('Personality'),
+                    center: new Text(
+                      "3/5",
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                    progressColor: Colors.blue,
+                  ),
+                ],
               ),
               ToggleSwitch(
                 cornerRadius: 20.0,
