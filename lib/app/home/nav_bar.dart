@@ -23,16 +23,23 @@ class NavBar extends StatelessWidget {
               color: Colors.yellowAccent,
             ),
           ),
-          accountEmail: Text(user.email + user.profilePic),
+          accountEmail: Text(user.email),
           currentAccountPicture: CircleAvatar(
             child: ClipOval(
-              child: Image.asset(
-                'assets/images/blank_profile.png',
-                fit: BoxFit.cover,
-                width: 90,
-                height: 90,
-              ),
-            ),
+                child: Image.network(
+              user.profilePic,
+              fit: BoxFit.cover,
+              width: 90,
+              height: 90,
+              errorBuilder: (context, error, stackTrace) {
+                return Image.asset(
+                  'assets/images/blank_profile.png',
+                  fit: BoxFit.cover,
+                  width: 90,
+                  height: 90,
+                );
+              },
+            )),
           ),
           decoration: BoxDecoration(
             color: Colors.blue,

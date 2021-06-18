@@ -48,11 +48,11 @@ class InstructorList with ChangeNotifier, DiagnosticableTreeMixin {
         _instructors.add(InstructorModel(
             id: int.parse(inst['id']),
             name: inst['name'],
-            profilePic: inst['profilePic'],
+            profilePic: 'https' + inst['profilePic'].toString().substring(4),
             evalCount: (inst['evaluationSet']['count']),
             department: inst['department']));
       }
-      // print(_instructors);
+      print(_instructors[0].profilePic);
 
       notifyListeners();
       if (response.statusCode >= 400) {

@@ -22,7 +22,7 @@ class Auth with ChangeNotifier, DiagnosticableTreeMixin {
 
   Future<bool> login(String password, String username) async {
     String log =
-        'mutation {tokenAuth(password:"$password",username:"$username"){success,errors,user{username,id,email,firstName,lastName}}}';
+        'mutation {tokenAuth(password:"$password",username:"$username"){success,errors,user{username,id,email,firstName,lastName,profile{profilePic}}}}';
     final headers = {
       "Content-Type": "application/json; charset=utf-8",
     };
@@ -43,7 +43,8 @@ class Auth with ChangeNotifier, DiagnosticableTreeMixin {
           username: userdata['username'],
           firstName: userdata['firstName'],
           lastName: userdata['lastName'],
-          // profilePic: userdata['profile']['profilePic'],
+          profilePic: 'https' +
+              userdata['profile']['profilePic'].toString().substring(4),
           email: userdata['email']);
       return (data['data']['tokenAuth']['success']) as bool;
     } catch (error) {
