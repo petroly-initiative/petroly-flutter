@@ -64,7 +64,9 @@ class NavBar extends StatelessWidget {
         ListTile(
           leading: Icon(FontAwesomeIcons.list),
           title: Text('My Evaluations'),
-          onTap: () => null,
+          onTap: () {
+            Navigator.pushNamed(context, '/myEvaluation');
+          },
         ),
         ListTile(
           leading: Icon(FontAwesomeIcons.solidBookmark),

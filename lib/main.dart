@@ -6,6 +6,7 @@ import 'package:petroly/providers/Instructors_list.dart';
 import 'package:provider/provider.dart';
 import 'app/evaluation/evaluation.dart';
 import 'app/evaluation/instructor_page.dart';
+import 'app/evaluation/my_evaluation.dart';
 import 'app/home/home.dart';
 import 'app/sign_in/sign_in_page.dart';
 import 'app/sign_in/sign_up_page.dart';
@@ -47,6 +48,7 @@ class MyApp extends StatelessWidget {
         '/forgetPass': (context) => ForgetPassword(),
         '/instructor': (context) => Instructor(),
         '/evalation': (context) => Evalation(),
+        '/myEvaluation': (context) => MyEvaluation(),
       },
       home: SignInPage(),
     );

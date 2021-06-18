@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:petroly/app/evaluation/evaluation.dart';
+import 'package:petroly/app/whatsapp/whatsapp_page.dart';
 import 'nav_bar.dart';
 
 class Home extends StatelessWidget {
@@ -39,7 +40,7 @@ class _HomePageState extends State<HomePage> {
     Text('home Screen'),
     Text('chat Screen'),
     Evalation(),
-    Text('res Screen'),
+    Whatsapp(),
   ];
   void _onItemTap(int index) {
     setState(() {
