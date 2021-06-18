@@ -47,7 +47,8 @@ class Auth with ChangeNotifier, DiagnosticableTreeMixin {
           email: userdata['email']);
       return (data['data']['tokenAuth']['success']) as bool;
     } catch (error) {
-      throw error;
+      return false;
+      // throw error;
     }
   }
 

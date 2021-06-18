@@ -45,7 +45,7 @@ class _InstructorState extends State<Instructor> {
       setState(() {
         comments = value;
       });
-      print(comments);
+      // print(comments);
     });
 
     return Scaffold(

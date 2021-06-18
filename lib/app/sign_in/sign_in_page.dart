@@ -130,6 +130,26 @@ class _SignInPageState extends State<SignInPage> {
                           });
                           if (value) {
                             Navigator.pushReplacementNamed(context, '/home');
+                          } else {
+                            AlertDialog alert = AlertDialog(
+                              title: Text("Error!"),
+                              content: Text('The Log in information is wrong'),
+                              actions: [
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop(true);
+                                  },
+                                  child: Text('OK'),
+                                ),
+                              ],
+                            );
+                            showDialog(
+                              barrierDismissible: false,
+                              context: context,
+                              builder: (BuildContext context) {
+                                return alert;
+                              },
+                            );
                           }
                         });
 
