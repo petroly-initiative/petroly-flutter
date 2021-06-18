@@ -91,6 +91,34 @@ class InstructorList with ChangeNotifier, DiagnosticableTreeMixin {
     }
   }
 
+  Future<List<String>> fetchComments(int id) async {
+    var urlString =
+        'https://www.petroly.co/endpoint/?query={evaluations(where : {instructor : {id : {equals:$id}} }) {data{comment}} }';
+    var url = Uri.parse(urlString);
+    try {
+      var response = await http.post(url);
+      // print(response.body);
+      var data = json.decode(response.body);
+      // print(data);
+      // print(data['data']['evaluations']['data']);
+      List<String> comments = [];
+      for (var comment in data['data']['evaluations']['data']) {
+        if (comment['comment'] != '') {
+          comments.add(comment['comment']);
+        }
+      }
+      return comments;
+      // print(_instructors);
+
+      // notifyListeners();
+      if (response.statusCode >= 400) {
+        throw Exception(data['message']);
+      }
+    } catch (error) {
+      throw error;
+    }
+  }
+
   /// Makes `Counter` readable inside the devtools by listing all of its properties
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {

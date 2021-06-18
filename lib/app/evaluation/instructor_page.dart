@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:petroly/custom_widgets/form_contianer.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:petroly/models/Instructor_model.dart';
+import 'package:petroly/providers/Instructors_list.dart';
+import 'package:provider/provider.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
 class InstructorArguments {
@@ -15,16 +17,37 @@ class InstructorArguments {
 
 class Instructor extends StatefulWidget {
   late InstructorArguments arg;
+
   @override
   _InstructorState createState() => _InstructorState();
 }
 
 class _InstructorState extends State<Instructor> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
+  List<String> comments = [];
+  // @override
+  // void didChangeDependencies() {
+  //   super.didChangeDependencies();
+  //   Provider.of<InstructorList>(context, listen: false)
+  //       .fetchComments(widget.arg.instructor.id)
+  //       .then((value) => comments = value);
+  // }
+
   @override
   Widget build(BuildContext context) {
     widget.arg =
         ModalRoute.of(context)!.settings.arguments as InstructorArguments;
+    var width = MediaQuery.of(context).size.width;
+
+    Provider.of<InstructorList>(context, listen: false)
+        .fetchComments(widget.arg.instructor.id)
+        .then((value) {
+      setState(() {
+        comments = value;
+      });
+      print(comments);
+    });
+
     return Scaffold(
       body: Stack(children: <Widget>[
         CustomContianer(
@@ -122,20 +145,65 @@ class _InstructorState extends State<Instructor> {
                   ),
                 ],
               ),
-              ToggleSwitch(
-                cornerRadius: 20.0,
-                radiusStyle: true,
-                initialLabelIndex: 0,
-                minWidth: 120,
-                totalSwitches: 2,
-                labels: ['Rating', 'Comments'],
-                onToggle: (index) {
-                  if (index == 0) {
-                    CustomContianer(height: 250, child: Column());
-                  } else {
-                    CustomContianer(height: 200, child: Column());
-                  }
-                },
+              Container(
+                child: Text(
+                  'Comments',
+                  style: TextStyle(color: Colors.white, fontSize: 18),
+                ),
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                margin: EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: Colors.black54,
+                  borderRadius: BorderRadius.circular(20),
+                  // border: Border.all(
+                  //   color: Colors.black54,
+                  // ),
+                ),
+              ),
+              // ToggleSwitch(
+              //   cornerRadius: 20.0,
+              //   radiusStyle: true,
+              //   initialLabelIndex: 0,
+              //   minWidth: 120,
+              //   totalSwitches: 2,
+              //   labels: ['Rating', 'Comments'],
+              //   onToggle: (index) {
+              //     if (index == 0) {
+              //       CustomContianer(height: 250, child: Column());
+              //     } else {
+              //       CustomContianer(height: 200, child: Column());
+              //     }
+              //   },
+              // ),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 5),
+                  child: ListView.builder(
+                    itemCount: comments.length,
+                    itemBuilder: (context, index) {
+                      return Container(
+                        padding: EdgeInsets.all(5),
+                        width: width * 0.7,
+                        margin: EdgeInsets.all(5),
+                        decoration: BoxDecoration(
+                          color: Colors.black12,
+                          borderRadius: BorderRadius.circular(8),
+                          // border: Border.all(
+                          //   color: Colors.black54,
+                          // ),
+                        ),
+                        child: Text(
+                          comments[index],
+                          textDirection: TextDirection.rtl,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 20,
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
               ),
             ],
           ),

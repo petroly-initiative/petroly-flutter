@@ -28,14 +28,12 @@ class _EvalationState extends State<Evalation> {
     super.didChangeDependencies();
   }
 
-  String dropdownvalue = 'Department';
+  String department = 'All';
   var items = [
-    'Department',
-    'Course',
-    'Grapes',
-    'Orange',
-    'watermelon',
-    'Pineapple',
+    'All',
+    'SWE',
+    'CS',
+    'COE',
   ];
 
   @override
@@ -94,10 +92,10 @@ class _EvalationState extends State<Evalation> {
                       fontWeight: FontWeight.bold,
                     ),
                     dropdownColor: Colors.blueGrey,
-                    value: dropdownvalue,
+                    value: "Department",
                     iconEnabledColor: Colors.white,
                     icon: Icon(Icons.keyboard_arrow_down),
-                    items: items.map((String items) {
+                    items: ['Department'].map((String items) {
                       return DropdownMenuItem(
                           value: items,
                           child: SizedBox(
@@ -107,7 +105,7 @@ class _EvalationState extends State<Evalation> {
                     }).toList(),
                     onChanged: (String? newValue) {
                       setState(() {
-                        dropdownvalue = newValue!;
+                        // department = newValue!;
                       });
                     },
                   ),
@@ -130,7 +128,7 @@ class _EvalationState extends State<Evalation> {
                       fontWeight: FontWeight.bold,
                     ),
                     dropdownColor: Colors.blueGrey,
-                    value: dropdownvalue,
+                    value: department,
                     iconEnabledColor: Colors.white,
                     icon: Icon(Icons.keyboard_arrow_down),
                     items: items.map((String items) {
@@ -143,7 +141,7 @@ class _EvalationState extends State<Evalation> {
                     }).toList(),
                     onChanged: (String? newValue) {
                       setState(() {
-                        dropdownvalue = newValue!;
+                        department = newValue!;
                       });
                     },
                   ),
