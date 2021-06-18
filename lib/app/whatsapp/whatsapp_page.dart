@@ -112,6 +112,8 @@ class _WhatsappPageState extends State<WhatsappPage> {
             ],
           ),
           Container(
+            margin: EdgeInsets.fromLTRB(0, 16, 0, 0),
+            padding: EdgeInsets.all(16),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
               color: Colors.white,
@@ -124,8 +126,48 @@ class _WhatsappPageState extends State<WhatsappPage> {
                 ),
               ],
             ),
-            height: 80,
+            height: 65,
             width: 360,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('ICS353 setion 2'),
+                Icon(FontAwesomeIcons.solidTimesCircle)
+              ],
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.fromLTRB(0, 16, 0, 0),
+            padding: EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.5),
+                  spreadRadius: 5,
+                  blurRadius: 7,
+                  offset: Offset(0, 3),
+                ),
+              ],
+            ),
+            height: 65,
+            width: 360,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('Me2017Lab setion 2'),
+                Row(
+                  children: [
+                    Icon(FontAwesomeIcons.solidThumbsUp),
+                    SizedBox(
+                      width: 16,
+                    ),
+                    Icon(FontAwesomeIcons.solidThumbsDown),
+                  ],
+                ),
+              ],
+            ),
           ),
         ],
       ),

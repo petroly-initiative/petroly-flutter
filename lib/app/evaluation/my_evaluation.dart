@@ -7,7 +7,19 @@ class MyEvaluation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
+      appBar: AppBar(
+          backgroundColor: Colors.blueGrey,
+          centerTitle: true,
+          title: Icon(FontAwesomeIcons.stumbleuponCircle),
+          leading: Builder(
+            builder: (context) => IconButton(
+              icon: Icon(
+                FontAwesomeIcons.solidUserCircle,
+                size: 36,
+              ),
+              onPressed: () => Scaffold.of(context).openDrawer(),
+            ),
+          )),
       drawer: NavBar(),
       body: MyEvaluationPage(),
       backgroundColor: Colors.grey[200],
