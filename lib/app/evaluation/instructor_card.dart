@@ -98,18 +98,20 @@ class InstructorCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 RatingBar.builder(
-                  initialRating: 3,
+                  initialRating: instructor.evaluation['overall'] ?? 0,
                   minRating: 1,
                   direction: Axis.horizontal,
                   allowHalfRating: true,
                   itemCount: 5,
+                  tapOnlyMode: true,
+                  ignoreGestures: true,
                   itemPadding: EdgeInsets.symmetric(horizontal: 0.0),
                   itemBuilder: (context, _) => Icon(
                     Icons.star,
                     color: Colors.amber,
                   ),
                   onRatingUpdate: (rating) {
-                    print(rating);
+                    // print(rating);
                   },
                 ),
               ],

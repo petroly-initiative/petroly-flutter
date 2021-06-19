@@ -39,6 +39,16 @@ class _InstructorState extends State<Instructor> {
         ModalRoute.of(context)!.settings.arguments as InstructorArguments;
     var width = MediaQuery.of(context).size.width;
 
+    var teach = widget.arg.instructor.evaluation['teachingAvg'] != null
+        ? widget.arg.instructor.evaluation['teachingAvg'] / 100 ?? 0.0
+        : 0.0;
+    var per = widget.arg.instructor.evaluation['personalityAvg'] != null
+        ? widget.arg.instructor.evaluation['personalityAvg'] / 100 ?? 0.0
+        : 0.0;
+    var grad = widget.arg.instructor.evaluation['gradingAvg'] != null
+        ? widget.arg.instructor.evaluation['gradingAvg'] / 100 ?? 0.0
+        : 0.0;
+
     Provider.of<InstructorList>(context, listen: false)
         .fetchComments(widget.arg.instructor.id)
         .then((value) {
@@ -104,12 +114,12 @@ class _InstructorState extends State<Instructor> {
                   CircularPercentIndicator(
                     radius: 80.0,
                     lineWidth: 8.0,
-                    percent: .60,
+                    percent: grad,
                     animation: true,
                     animationDuration: 1200,
                     footer: Text('Grading'),
                     center: new Text(
-                      "3/5",
+                      (grad * 5).toStringAsFixed(1) + '/5',
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ),
@@ -118,12 +128,12 @@ class _InstructorState extends State<Instructor> {
                   CircularPercentIndicator(
                     radius: 80.0,
                     lineWidth: 8.0,
-                    percent: .60,
+                    percent: teach,
                     animation: true,
                     animationDuration: 1200,
                     footer: Text('Teaching'),
                     center: new Text(
-                      "3/5",
+                      (teach * 5).toStringAsFixed(1) + '/5',
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ),
@@ -132,12 +142,12 @@ class _InstructorState extends State<Instructor> {
                   CircularPercentIndicator(
                     radius: 80.0,
                     lineWidth: 8.0,
-                    percent: .60,
+                    percent: per,
                     animation: true,
                     animationDuration: 1200,
                     footer: Text('Personality'),
                     center: new Text(
-                      "3/5",
+                      (per * 5).toStringAsFixed(1) + '/5',
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ),
