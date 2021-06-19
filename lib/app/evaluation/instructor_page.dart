@@ -197,7 +197,7 @@ class _InstructorState extends State<Instructor> {
                           textDirection: TextDirection.rtl,
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 16,
                           ),
                         ),
                       );
