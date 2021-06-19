@@ -19,7 +19,6 @@ void main() {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => InstructorProviderx()),
-        ChangeNotifierProvider(create: (_) => InstructorList()),
         ChangeNotifierProvider(create: (_) => Auth()),
       ],
       child: const MyApp(),
@@ -34,22 +33,27 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // await initHiveForFlutter();
 
-    return MaterialApp(
-      //  initialRoute: '/SignIn',
-      theme: ThemeData(
-        primarySwatch: Colors.green,
-        fontFamily: 'Droid',
-      ),
-      routes: {
-        '/SignIn': (context) => SignInPage(),
-        '/SignUp': (context) => SignUpPage(),
-        '/home': (context) => Home(),
-        '/forgetPass': (context) => ForgetPassword(),
-        '/instructor': (context) => Instructor(),
-        '/evalation': (context) => Evalation(),
-      },
-      home: SignInPage(),
-    );
+    return MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (_) => InstructorProviderx()),
+          ChangeNotifierProvider(create: (_) => InstructorList()),
+        ],
+        child: MaterialApp(
+          //  initialRoute: '/SignIn',
+          theme: ThemeData(
+            primarySwatch: Colors.green,
+            fontFamily: 'Droid',
+          ),
+          routes: {
+            '/SignIn': (context) => SignInPage(),
+            '/SignUp': (context) => SignUpPage(),
+            '/home': (context) => Home(),
+            '/forgetPass': (context) => ForgetPassword(),
+            '/instructor': (context) => Instructor(),
+            '/evalation': (context) => Evalation(),
+          },
+          home: SignInPage(),
+        ));
   }
 }
 
