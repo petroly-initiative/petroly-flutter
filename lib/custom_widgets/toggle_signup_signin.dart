@@ -20,7 +20,8 @@ class ToggleSignUp extends StatelessWidget {
                 text: link,
                 recognizer: TapGestureRecognizer()
                   ..onTap = () {
-                    Navigator.pushNamed(context, page);
+                    Navigator.pushReplacementNamed(context, page);
+                    // Navigator.pushNamed(context, page);
                   },
                 style: TextStyle(
                     color: Colors.greenAccent[700],

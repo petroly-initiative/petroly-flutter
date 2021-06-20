@@ -30,7 +30,7 @@ class CustomTextField extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Icon(
               icon,
-              size: 28,
+              size: 25,
             ),
           ),
           border: OutlineInputBorder(

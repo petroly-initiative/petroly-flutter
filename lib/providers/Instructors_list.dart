@@ -8,15 +8,39 @@ import 'dart:async';
 class InstructorList with ChangeNotifier, DiagnosticableTreeMixin {
   String searchValue = '';
   List<InstructorModel> _instructors = [];
+  var _selectedDepartment = 'All';
   List<InstructorModel> get instructors {
-    if (searchValue == '') {
-      return _instructors.toList();
+    if (_selectedDepartment == 'All') {
+      if (searchValue == '') {
+        return _instructors.toList();
+      } else {
+        return _instructors
+            .where((element) =>
+                element.name.toLowerCase().contains(searchValue.toLowerCase()))
+            .toList();
+      }
     } else {
+      // print(_selectedDepartment);
+      // print("Refiltering");
+
       return _instructors
           .where((element) =>
-              element.name.toLowerCase().contains(searchValue.toLowerCase()))
+              element.name.toLowerCase().contains(searchValue.toLowerCase()) &&
+              element.department.toLowerCase() ==
+                  (_selectedDepartment.toLowerCase()))
           .toList();
     }
+  }
+
+  List<String> _departments = [];
+  List<String> get departments {
+    return ['All', ..._departments];
+  }
+
+  void selectedDepartment(String dep) {
+    _selectedDepartment = dep;
+
+    notifyListeners();
   }
 
   int _count = 0;
@@ -31,6 +55,7 @@ class InstructorList with ChangeNotifier, DiagnosticableTreeMixin {
 
   void search(String subName) {
     searchValue = subName;
+    notifyListeners();
   }
 
   Future<void> fetchData() async {
@@ -42,7 +67,7 @@ class InstructorList with ChangeNotifier, DiagnosticableTreeMixin {
       // print(response.body);
       var data = json.decode(response.body);
       // print(data);
-      print(data['data']['instructors']['data']);
+      // print(data['data']['instructors']['data']);
       _instructors.clear();
       for (var inst in data['data']['instructors']['data']) {
         var evaluation = {
@@ -59,7 +84,7 @@ class InstructorList with ChangeNotifier, DiagnosticableTreeMixin {
             evaluation: evaluation,
             department: inst['department']));
       }
-      print(_instructors[0].profilePic);
+      // print(_instructors[0].profilePic);
 
       notifyListeners();
       if (response.statusCode >= 400) {
@@ -71,22 +96,19 @@ class InstructorList with ChangeNotifier, DiagnosticableTreeMixin {
   }
 
   Future<void> fetchDep() async {
-    var urlString =
-        'https://www.petroly.co/endpoint/?query={instructors{data{id,name,department}}}';
+    var urlString = 'https://www.petroly.co/endpoint/?query={departmentList}';
     var url = Uri.parse(urlString);
     try {
       var response = await http.post(url);
-      print(response.body);
+      // print(response.body);
       var data = json.decode(response.body);
       // print(data);
       // print(data['data']['instructors']['data']);
-      _instructors.clear();
-      for (var inst in data['data']['instructors']['data']) {
-        _instructors.add(InstructorModel(
-            id: int.parse(inst['id']),
-            name: inst['name'],
-            department: inst['department']));
+      _departments.clear();
+      for (var dep in data['data']['departmentList']) {
+        _departments.add(dep.toString());
       }
+      print(_departments);
       // print(_instructors);
 
       notifyListeners();

@@ -20,10 +20,12 @@ class Evalation extends StatefulWidget {
 
 class _EvalationState extends State<Evalation> {
   late List<InstructorModel> instructors;
+  late List<String> departments;
   var _isinit = true;
   void didChangeDependencies() {
     if (_isinit) {
       Provider.of<InstructorList>(context, listen: false).fetchData();
+      Provider.of<InstructorList>(context, listen: false).fetchDep();
     }
     super.didChangeDependencies();
   }
@@ -31,15 +33,15 @@ class _EvalationState extends State<Evalation> {
   String department = 'All';
   var items = [
     'All',
-    'SWE',
-    'CS',
-    'COE',
   ];
 
   @override
   Widget build(BuildContext context) {
     // instructors = context.read<InstructorProviderx>().instructors;
     instructors = Provider.of<InstructorList>(context).instructors;
+    departments =
+        Provider.of<InstructorList>(context, listen: false).departments;
+    items = departments.toList();
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(
@@ -143,6 +145,8 @@ class _EvalationState extends State<Evalation> {
                       setState(() {
                         department = newValue!;
                       });
+                      Provider.of<InstructorList>(context, listen: false)
+                          .selectedDepartment(newValue!);
                     },
                   ),
                 ),

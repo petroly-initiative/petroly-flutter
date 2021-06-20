@@ -108,7 +108,7 @@ class _SignInPageState extends State<SignInPage> {
                     recognizer: TapGestureRecognizer()
                       ..onTap = () {
                         print(00011000);
-
+                        Navigator.pushReplacementNamed(context, '/forgetPass');
                         // Navigator.pushNamed(context, 'forgetPass');
                       }),
               ),
@@ -157,7 +157,7 @@ class _SignInPageState extends State<SignInPage> {
                       }),
               SizedBox(height: 8.0),
               ToggleSignUp(
-                  page: "SignUp",
+                  page: "/SignUp",
                   text: "Do not have an account?",
                   link: " Sign Up")
             ],
