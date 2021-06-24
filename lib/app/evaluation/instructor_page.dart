@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:petroly/app/evaluation/widgets/circular_indicator.dart';
 import 'package:petroly/custom_widgets/form_contianer.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:petroly/models/Instructor_model.dart';
@@ -15,6 +16,7 @@ class InstructorArguments {
   // InstructorArguments({required this.name,required this.id});
 }
 
+// ignore: must_be_immutable
 class Instructor extends StatefulWidget {
   late InstructorArguments arg;
 
@@ -111,48 +113,19 @@ class _InstructorState extends State<Instructor> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  CircularPercentIndicator(
-                    radius: 80.0,
-                    lineWidth: 8.0,
-                    percent: grad,
-                    animation: true,
-                    animationDuration: 1200,
-                    footer: Text('Grading'),
-                    center: new Text(
-                      (grad * 5).toStringAsFixed(1) + '/5',
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                    ),
-                    progressColor: Colors.blue,
-                  ),
-                  CircularPercentIndicator(
-                    radius: 80.0,
-                    lineWidth: 8.0,
-                    percent: teach,
-                    animation: true,
-                    animationDuration: 1200,
-                    footer: Text('Teaching'),
-                    center: new Text(
-                      (teach * 5).toStringAsFixed(1) + '/5',
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                    ),
-                    progressColor: Colors.blue,
-                  ),
-                  CircularPercentIndicator(
-                    radius: 80.0,
-                    lineWidth: 8.0,
-                    percent: per,
-                    animation: true,
-                    animationDuration: 1200,
-                    footer: Text('Personality'),
-                    center: new Text(
-                      (per * 5).toStringAsFixed(1) + '/5',
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                    ),
-                    progressColor: Colors.blue,
-                  ),
+                  CustomCircularIndicator(
+                      percent: 0.7,
+                      footer: 'Grading',
+                      rate: (grad * 5).toStringAsFixed(1) + '/5'),
+                  CustomCircularIndicator(
+                      percent: 0.7,
+                      footer: 'Teaching',
+                      rate: (teach * 5).toStringAsFixed(1) + '/5'),
+                  CustomCircularIndicator(
+                      percent: 0.7,
+                      footer: 'Personality',
+                      rate: (per * 5).toStringAsFixed(1) + '/5'),
+
                 ],
               ),
               Container(
@@ -170,21 +143,7 @@ class _InstructorState extends State<Instructor> {
                   // ),
                 ),
               ),
-              // ToggleSwitch(
-              //   cornerRadius: 20.0,
-              //   radiusStyle: true,
-              //   initialLabelIndex: 0,
-              //   minWidth: 120,
-              //   totalSwitches: 2,
-              //   labels: ['Rating', 'Comments'],
-              //   onToggle: (index) {
-              //     if (index == 0) {
-              //       CustomContianer(height: 250, child: Column());
-              //     } else {
-              //       CustomContianer(height: 200, child: Column());
-              //     }
-              //   },
-              // ),
+
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.only(top: 5),
@@ -212,6 +171,25 @@ class _InstructorState extends State<Instructor> {
                         ),
                       );
                     },
+                  ),
+                ),
+              ), GestureDetector(
+                onTap: () {
+                  Navigator.pushReplacementNamed(context, '/evalationForm');
+                },
+                child: Container(
+                  child: Text(
+                    'Evaluate',
+                    style: TextStyle(color: Colors.white, fontSize: 18),
+                  ),
+                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                  margin: EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    color: Colors.black54,
+                    borderRadius: BorderRadius.circular(20),
+                    // border: Border.all(
+                    //   color: Colors.black54,
+                    // ),
                   ),
                 ),
               ),

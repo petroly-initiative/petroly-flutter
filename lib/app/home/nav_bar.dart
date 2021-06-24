@@ -20,7 +20,7 @@ class NavBar extends StatelessWidget {
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
-              color: Colors.yellowAccent,
+              color: Color(0xFF123456),
             ),
           ),
           accountEmail: Text(user.email),
