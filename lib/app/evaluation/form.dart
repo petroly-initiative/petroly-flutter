@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:petroly/models/Instructor_model.dart';
 
 class EvaluationForm extends StatefulWidget {
   @override
@@ -13,8 +15,8 @@ class _EvaluationFormState extends State<EvaluationForm> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: Text('Flutter Stepper Demo'),
+
+        title: Text('instructor name '),
         centerTitle: true,
       ),
       body: Container(
@@ -30,32 +32,55 @@ class _EvaluationFormState extends State<EvaluationForm> {
                 onStepCancel: cancel,
                 steps: <Step>[
                   Step(
-                      title: new Text('Grading'),
-                      content: Column(
-                        children: <Widget>[
-                          TextFormField(
-                            decoration:
-                                InputDecoration(labelText: 'Email Address'),
+                    title: new Text('Grading'),
+                    content: Column(
+                      children: <Widget>[
+                        RatingBar.builder(
+                          initialRating: 0,
+                          minRating: 1,
+                          direction: Axis.horizontal,
+                          allowHalfRating: true,
+                          itemCount: 5,
+                          itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+                          itemBuilder: (context, _) => Icon(
+                            Icons.star,
+                            color: Colors.amber,
                           ),
-                          TextFormField(
-                            decoration: InputDecoration(labelText: 'Password'),
-                          ),
-                        ],
-                      ),
-                      isActive: _currentStep >= 0,
-                      state: _currentStep >= 0
-                          ? StepState.complete
-                          : StepState.disabled,subtitle: Text('Teaching'),),
+                          onRatingUpdate: (rating) {
+                            print(rating);
+                          },
+                        ),
+                        TextFormField(
+                          decoration: InputDecoration(labelText: 'Comment '),
+                        ),
+                      ],
+                    ),
+                    isActive: _currentStep >= 0,
+                    state: _currentStep >= 0
+                        ? StepState.complete
+                        : StepState.disabled,
+                  ),
                   Step(
                     title: new Text('Teaching'),
                     content: Column(
                       children: <Widget>[
-                        TextFormField(
-                          decoration:
-                              InputDecoration(labelText: 'Home Address'),
+                        RatingBar.builder(
+                          initialRating: 0,
+                          minRating: 1,
+                          direction: Axis.horizontal,
+                          allowHalfRating: true,
+                          itemCount: 5,
+                          itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+                          itemBuilder: (context, _) => Icon(
+                            Icons.star,
+                            color: Colors.amber,
+                          ),
+                          onRatingUpdate: (rating) {
+                            print(rating);
+                          },
                         ),
                         TextFormField(
-                          decoration: InputDecoration(labelText: 'Postcode'),
+                          decoration: InputDecoration(labelText: 'Comment '),
                         ),
                       ],
                     ),
@@ -68,34 +93,47 @@ class _EvaluationFormState extends State<EvaluationForm> {
                     title: new Text('Personality'),
                     content: Column(
                       children: <Widget>[
+                        RatingBar.builder(
+                          initialRating: 0,
+                          minRating: 1,
+                          direction: Axis.horizontal,
+                          allowHalfRating: true,
+                          itemCount: 5,
+                          itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+                          itemBuilder: (context, _) => Icon(
+                            Icons.star,
+                            color: Colors.amber,
+                          ),
+                          onRatingUpdate: (rating) {
+                            print(rating);
+                          },
+                        ),
                         TextFormField(
-                          decoration:
-                              InputDecoration(labelText: 'Mobile Number'),
+                          decoration: InputDecoration(labelText: 'Comment '),
                         ),
                       ],
                     ),
                     isActive: _currentStep >= 0,
                     state: _currentStep >= 2
                         ? StepState.complete
-                        : StepState.disabled,
+                        : StepState.editing,
                   ),
                   Step(
-                    title: new Text('Grading'),
+                    title: new Text('Course and Term'),
                     content: Column(
                       children: <Widget>[
                         TextFormField(
-                          decoration:
-                              InputDecoration(labelText: 'Email Address'),
+                          decoration: InputDecoration(labelText: 'Course'),
                         ),
                         TextFormField(
-                          decoration: InputDecoration(labelText: 'Password'),
+                          decoration: InputDecoration(labelText: 'Term'),
                         ),
                       ],
                     ),
                     isActive: _currentStep >= 0,
                     state: _currentStep >= 3
                         ? StepState.complete
-                        : StepState.disabled,
+                        : StepState.editing,
                   ),
                 ],
               ),
@@ -103,17 +141,7 @@ class _EvaluationFormState extends State<EvaluationForm> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.list),
-        onPressed: switchStepsType,
-      ),
     );
-  }
-
-  switchStepsType() {
-    setState(() => stepperType == StepperType.vertical
-        ? stepperType = StepperType.horizontal
-        : stepperType = StepperType.vertical);
   }
 
   tapped(int step) {
@@ -121,7 +149,7 @@ class _EvaluationFormState extends State<EvaluationForm> {
   }
 
   continued() {
-    _currentStep < 3 ? setState(() => _currentStep += 1) : null;
+    _currentStep < 3 ? setState(() => _currentStep += 1) :  null;// Navigator.pushNamed(context, '/instructor');
   }
 
   cancel() {
