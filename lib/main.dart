@@ -14,6 +14,8 @@ import 'app/sign_in/sign_up_page.dart';
 import 'app/sign_in/forget_password.dart';
 import 'package:flutter/foundation.dart';
 
+import 'app/whatsapp/add_group_form.dart';
+
 void main() {
   runApp(
     /// Providers are above [MyApp] instead of inside it, so that tests
@@ -54,6 +56,7 @@ class MyApp extends StatelessWidget {
             '/instructor': (context) => Instructor(),
             '/evalation': (context) => Evalation(),
             '/evalationForm': (context) => EvaluationForm(),
+            '/whatsappForm': (context) => AddGroupForm(),
           },
           home: SignInPage(),
         ));
