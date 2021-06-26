@@ -114,15 +114,15 @@ class _InstructorState extends State<Instructor> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   CustomCircularIndicator(
-                      percent: 0.7,
+                      percent: grad,
                       footer: 'Grading',
                       rate: (grad * 5).toStringAsFixed(1) + '/5'),
                   CustomCircularIndicator(
-                      percent: 0.7,
+                      percent: teach,
                       footer: 'Teaching',
                       rate: (teach * 5).toStringAsFixed(1) + '/5'),
                   CustomCircularIndicator(
-                      percent: 0.7,
+                      percent: per,
                       footer: 'Personality',
                       rate: (per * 5).toStringAsFixed(1) + '/5'),
 

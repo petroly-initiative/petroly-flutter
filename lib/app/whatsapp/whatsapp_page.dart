@@ -3,63 +3,15 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:petroly/app/home/nav_bar.dart';
 import 'package:petroly/custom_widgets/custom_icon_button.dart';
 
+import 'add_group_form.dart';
+
 class Whatsapp extends StatefulWidget {
   @override
   _WhatsappState createState() => _WhatsappState();
 }
 
 class _WhatsappState extends State<Whatsapp> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  final TextEditingController _linkController = TextEditingController();
-  final TextEditingController _courseController = TextEditingController();
-
-  Future<void> showInformationDialog(BuildContext context) async {
-    return await showDialog(
-        context: context,
-        builder: (context) {
-          bool isChecked = false;
-          return StatefulBuilder(builder: (context, setState) {
-            return AlertDialog(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(16.0))),
-              content: Form(
-                  key: _formKey,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      TextFormField(
-                        controller: _linkController,
-                        validator: (value) {
-                          return value!.isNotEmpty ? null : "Add Group Link";
-                        },
-                        decoration: InputDecoration(hintText: "Add Group Link"),
-                      ),
-                      TextFormField(
-                        controller: _courseController,
-                        validator: (value) {
-                          return value!.isNotEmpty ? null : "add the course";
-                        },
-                        decoration: InputDecoration(hintText: "Course"),
-                      ),
-                    ],
-                  )),
-              title: Text('Add New Group'),
-              actions: <Widget>[
-                InkWell(
-                  child: Text('Add    '),
-                  onTap: () {
-                    if (_formKey.currentState!.validate()) {
-                      // Do something like updating SharedPreferences or User Settings etc.
-                      Navigator.of(context).pop();
-                    }
-                  },
-                ),
-              ],
-            );
-          });
-        });
-  }
 
   @override
   Widget build(BuildContext context) {

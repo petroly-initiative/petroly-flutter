@@ -56,7 +56,7 @@ class MyApp extends StatelessWidget {
             '/instructor': (context) => Instructor(),
             '/evalation': (context) => Evalation(),
             '/evalationForm': (context) => EvaluationForm(),
-            '/whatsappForm': (context) => AddGroupForm(),
+            // '/whatsappForm': (context) => showInformationDialog(),
           },
           home: SignInPage(),
         ));

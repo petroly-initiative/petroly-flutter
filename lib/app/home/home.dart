@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:petroly/app/evaluation/evaluation.dart';
+import 'package:petroly/app/chat/chat.dart';
+
 import 'package:petroly/app/whatsapp/whatsapp_page.dart';
 import 'nav_bar.dart';
 
@@ -38,7 +40,7 @@ class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
   List<Widget> _widgetOptions = <Widget>[
     Text('home Screen'),
-    Text('chat Screen'),
+    Chat(),
     Evalation(),
     Whatsapp(),
   ];
