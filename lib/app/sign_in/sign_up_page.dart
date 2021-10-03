@@ -46,6 +46,7 @@ class _SignUpPageState extends State<SignUpPage> {
           //sign up form
           child: CustomContianer(
             height: 550,
+            width: 400,
             child: SingleChildScrollView(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,

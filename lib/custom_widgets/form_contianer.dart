@@ -4,10 +4,13 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class CustomContianer extends StatelessWidget {
   CustomContianer({
     required this.height,
+    required this.width,
+
     required this.child,
   });
 
   final double height;
+  final double width;
   final Widget child;
 
   @override
@@ -30,7 +33,7 @@ class CustomContianer extends StatelessWidget {
             ],
           ),
           height: height,
-          width: 400,
+          width: width,
           alignment: Alignment.center,
           child: child,
         ),

@@ -63,6 +63,7 @@ class ForgetPassword extends StatelessWidget {
         ),
         //forget password form
         CustomContianer(
+          width: 400,
           height: 250,
           child: Column(
             // mainAxisAlignment: MainAxisAlignment.center,

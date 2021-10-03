@@ -61,6 +61,7 @@ class _SignInPageState extends State<SignInPage> {
         //sign in form
         CustomContianer(
           height: 400,
+          width: 400,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,

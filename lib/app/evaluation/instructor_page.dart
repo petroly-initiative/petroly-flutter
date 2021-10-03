@@ -63,6 +63,7 @@ class _InstructorState extends State<Instructor> {
     return Scaffold(
       body: Stack(children: <Widget>[
         CustomContianer(
+          width: 400,
           height: 600,
           child: Column(
             // mainAxisAlignment: MainAxisAlignment.center,

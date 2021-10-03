@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:petroly/app/home/nav_bar.dart';
 import 'package:petroly/custom_widgets/custom_icon_button.dart';
+import 'package:petroly/custom_widgets/form_contianer.dart';
 
 import 'add_group_form.dart';
 
@@ -11,21 +13,19 @@ class Whatsapp extends StatefulWidget {
 }
 
 class _WhatsappState extends State<Whatsapp> {
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: NavBar(),
       body: WhatsappPage(),
       backgroundColor: Colors.grey[200],
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          await showInformationDialog(context);
-        },
-        child: const Icon(Icons.add),
-        backgroundColor: Color(0xFF17DE98),
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () async {
+      //     await showInformationDialog(context);
+      //   },
+      //   child: const Icon(Icons.add),
+      //   backgroundColor: Color(0xFF17DE98),
+      // ),
     );
   }
 }
@@ -50,86 +50,14 @@ class _WhatsappPageState extends State<WhatsappPage> {
       margin: const EdgeInsets.all(16.0),
       child: Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                    color: Colors.cyan,
-                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.5),
-                        spreadRadius: 2,
-                        blurRadius: 7,
-                        offset: Offset(0, 2),
-                      ),
-                    ]),
-                child: DropdownButton(
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  dropdownColor: Colors.blueGrey,
-                  value: department,
-                  iconEnabledColor: Colors.white,
-                  icon: Icon(Icons.keyboard_arrow_down),
-                  items: items.map((String items) {
-                    return DropdownMenuItem(
-                        value: items,
-                        child: SizedBox(
-                          width: 100.0,
-                          child: Text(items, textAlign: TextAlign.center),
-                        ));
-                  }).toList(),
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      department = newValue!;
-                    });
-                  },
-                ),
-              ),
-              Container(
-                decoration: BoxDecoration(
-                    color: Colors.cyan,
-                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.5),
-                        spreadRadius: 2,
-                        blurRadius: 7,
-                        offset: Offset(0, 2),
-                      ),
-                    ]),
-                child: DropdownButton(
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  dropdownColor: Colors.blueGrey,
-                  value: department,
-                  iconEnabledColor: Colors.white,
-                  icon: Icon(Icons.keyboard_arrow_down),
-                  items: items.map((String items) {
-                    return DropdownMenuItem(
-                        value: items,
-                        child: SizedBox(
-                          width: 100.0,
-                          child: Text(items, textAlign: TextAlign.center),
-                        ));
-                  }).toList(),
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      department = newValue!;
-                    });
-                  },
-                ),
-              ),
-            ],
+          SizedBox(
+            height: 12,
           ),
           Container(
-            margin: EdgeInsets.fromLTRB(0, 16, 0, 0),
-            padding: EdgeInsets.all(16),
+            alignment: Alignment.center,
+            height: 120,
+            width: MediaQuery.of(context).size.width,
+            padding: const EdgeInsets.symmetric(vertical: 9.0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
               color: Colors.white,
@@ -142,44 +70,46 @@ class _WhatsappPageState extends State<WhatsappPage> {
                 ),
               ],
             ),
-            height: 65,
-            width: 360,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            child: Column(
               children: [
-                Text('ICS353 setion 2'),
-                Icon(FontAwesomeIcons.solidTimesCircle)
-              ],
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.fromLTRB(0, 16, 0, 0),
-            padding: EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              color: Colors.white,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.5),
-                  spreadRadius: 5,
-                  blurRadius: 7,
-                  offset: Offset(0, 3),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text('2021-10-3'),
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.star_border_outlined,
+                          ),
+                          Text('202')
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-              ],
-            ),
-            height: 65,
-            width: 360,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text('Me2017Lab setion 2'),
+                Divider(
+                  color: Colors.grey,
+                ),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(FontAwesomeIcons.solidThumbsUp),
+                    Text(
+                      'ICS254 HW:3-oct',
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    )
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(FontAwesomeIcons.whatsapp, color: Colors.green),
                     SizedBox(
-                      width: 16,
+                      width: 8,
                     ),
-                    Icon(FontAwesomeIcons.solidThumbsDown),
+                    Icon(FontAwesomeIcons.book, color: Colors.deepPurple),
                   ],
                 ),
               ],
