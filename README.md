@@ -2,6 +2,9 @@
 
 A new Flutter application.
 
+## Contribute Call
+We are loking for passionate flutter devs to continue our dream of publishing our first mobile app.
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
